@@ -1,32 +1,32 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <Header></Header>
+    <!-- 路由出口 -->
+    <router-view></router-view>
+    <Footer v-show="$route.meta.show"></Footer>
   </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Header from './components/Header/Header.vue'
+import Footer from './components/Footer/Footer.vue'
 
-nav {
-  padding: 30px;
+export default {
+  name: 'ProjectshpApp',
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+  data() {
+    return {}
+  },
+  components: {
+    Header,
+    Footer
+  },
+  mounted() {
+    // 派发一个action|| 获取商品列表
+    this.$store.dispatch('categoryList')
   }
 }
+</script>
+
+<style lang="less" scoped>
 </style>
